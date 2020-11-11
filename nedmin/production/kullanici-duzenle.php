@@ -51,6 +51,18 @@
 
         <form action="../netting/islem.php" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
+          <?php 
+          $zaman = explode(" ",$kullaniciCek['kullanici_zaman']);
+          ?>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kullanıcı Kayıt Tarihi  <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="date" id="first-name" name="kullanici_zaman" required="required" value="<?php echo $zaman["0"] ?>" class="form-control col-md-7 col-xs-12"  disabled="">
+            </div>
+          </div>
+
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kullanıcı TC  <span class="required">*</span>
             </label>
@@ -90,11 +102,13 @@
            </div>
          </div>
 
+         <input type="hidden" name="kullanici_id" value="<?php echo $kullaniciCek['kullanici_id'] ?>">
+
 
          <div class="ln_solid"></div>
          <div class="form-group">
           <div align='right' class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-           <button type="submit" name="genelayarkaydet" class="btn btn-success">Güncelle</button>
+           <button type="submit" name="kullaniciduzenle" class="btn btn-success">Güncelle</button>
          </div>
        </div>
      </form>

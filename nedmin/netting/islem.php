@@ -20,7 +20,7 @@ if(isset($_POST['admingiris'])){
 	echo $say=$kullaniciSor->rowCount();
 
 	if ($say==1) {
-			
+
 		$_SESSION['kullanici_mail']=$kullanici_mail;
 		header("Location:../production/index.php");
 
@@ -192,5 +192,37 @@ if(isset($_POST['hakkimizdakaydet'])){
 		header("Location:../production/hakkimizda.php?durum=no");
 	}
 }
+
+
+
+if (isset($_POST['kullaniciduzenle'])) {
+
+	$kullanici_id=$_POST['kullanici_id'];
+
+	$ayarkaydet=$db->prepare("UPDATE kullanici SET
+		kullanici_tc=:kullanici_tc,
+		kullanici_adsoyad=:kullanici_adsoyad,
+		kullanici_durum=:kullanici_durum
+		WHERE kullanici_id={$_POST['kullanici_id']}");
+
+	$update=$ayarkaydet->execute(array(
+		'kullanici_tc' => $_POST['kullanici_tc'],
+		'kullanici_adsoyad' => $_POST['kullanici_adsoyad'],
+		'kullanici_durum' => $_POST['kullanici_durum']
+	));
+
+
+	if ($update) {
+
+		Header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=ok");
+
+	} else {
+
+		Header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=no");
+	}
+
+}
+
+
 
 ?>
