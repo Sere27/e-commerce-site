@@ -1,11 +1,21 @@
 <?php 
+ob_start();
+session_start();
 include '../netting/baglan.php';
+
 
 $ayarSor=$db->prepare("SELECT * FROM ayar where ayar_id=:id");
 $ayarSor->execute(array(
   'id' => 0
 ));
 $ayarCek=$ayarSor->fetch(PDO::FETCH_ASSOC);
+
+
+$kullaniciSor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail");
+$kullaniciSor->execute(array(
+  'mail' => $_SESSION['kullanici_mail']
+));
+$kullaniciCek=$kullaniciSor->fetch(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -59,8 +69,8 @@ $ayarCek=$ayarSor->fetch(PDO::FETCH_ASSOC);
               <img src="images/img.jpg" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-              <span>Welcome,</span>
-              <h2>John Doe</h2>
+              <span>Hoşgeldin,</span>
+              <h2><?php echo $kullaniciCek['kullanici_adsoyad'] ?></h2>
             </div>
           </div>
           <!-- /menu profile quick info -->
