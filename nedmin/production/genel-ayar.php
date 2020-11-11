@@ -7,7 +7,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2>Hakkımızda Ayarları <small>İşlem Durumu</small>
+          <h2>Site Ayarları <small>İşlem Durumu</small>
 
             <?php 
 

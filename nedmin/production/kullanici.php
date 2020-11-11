@@ -3,11 +3,8 @@
 include 'header.php'; 
 
 //Belirli veriyi seçme işlemi
-$hakkimizdasor=$db->prepare("SELECT * FROM hakkimizda where hakkimizda_id=:id");
-$hakkimizdasor->execute(array(
-  'id' => 0
-));
-$hakkimizdacek=$hakkimizdasor->fetch(PDO::FETCH_ASSOC);
+$kullanicisor=$db->prepare("SELECT * FROM kullanici");
+$kullanicisor->execute();
 
 ?>
 
@@ -64,27 +61,38 @@ $hakkimizdacek=$hakkimizdasor->fetch(PDO::FETCH_ASSOC);
           </thead>
 
           <tbody>
+
+           <?php 
+           while($kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC)) {?>
+
+
             <tr>
-              <td>Tiger</td>
-              <td>Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td><button class="btn btn-primary btn-xs">Düzenle</button></td>
-              <td><button class="btn btn-danger btn-xs">Sil</button></td>
+              <td><?php echo $kullanicicek['kullanici_zaman'] ?></td>
+              <td><?php echo $kullanicicek['kullanici_adsoyad'] ?></td>
+              <td><?php echo $kullanicicek['kullanici_mail'] ?></td>
+              <td><?php echo $kullanicicek['kullanici_gsm'] ?></td>
+
+              <td><center><a href="kullanici-duzenle.php?kullanici_id=<?php echo $kullanicicek['kullanici_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
+
+              <td><center><button class="btn btn-danger btn-xs">Sil</button></center></td>
             </tr>
 
-          </tbody>
-        </table>
+          <?php  }
+          ?>
 
-        <!-- Div içerik bitiş -->
 
-      </div>
+        </tbody>
+      </table>
+
+      <!-- Div içerik bitiş -->
+
     </div>
   </div>
 </div>
+</div>
 
 </div>
 </div>
 
 
-<?php include 'footer.php' ?>
+<?php include 'footer.php' ?> 
