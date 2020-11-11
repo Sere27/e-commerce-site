@@ -99,6 +99,8 @@ if($say==0){
 
                 <li><a href="index.php"><i class="fa fa-home"></i> Ana Sayfa</a></li>
 
+                <li><a href="kullanici.php"><i class="fa fa-user"></i>Kullanıcılar</a></li>
+
                 <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda</a></li>
 
                 <li><a><i class="fa fa-cogs"></i>Site Ayarlar <span class="fa fa-chevron-down"></span></a>
@@ -108,8 +110,6 @@ if($say==0){
                     <li><a href="api-ayar.php">API Ayarlar</a></li>
                     <li><a href="sosyalmedya-ayar.php">Sosyal Medya Ayarlar</a></li>
                     <li><a href="mail-ayar.php">Mail Ayarları</a></li>
-
-
                   </ul>
                 </li>                     
               </ul>
