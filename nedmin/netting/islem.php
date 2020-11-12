@@ -214,15 +214,32 @@ if (isset($_POST['kullaniciduzenle'])) {
 
 	if ($update) {
 
-		Header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=ok");
+		header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=ok");
 
 	} else {
 
-		Header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=no");
+		header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=no");
 	}
 
 }
 
 
+if ($_GET['kullaniciSil']=="ok") {
 
+	$sil=$db->prepare("DELETE from kullanici where kullanici_id=:id");
+	$kontrol=$sil->execute(array(
+		'id' => $_GET['kullanici_id']
+	));
+
+	
+	if ($kontrol) {
+
+		Header("Location:../production/kullanici.php?sil=ok");
+
+	} else {
+
+		Header("Location:../production/kullanici.php?sil=no");
+	}
+
+}
 ?>
