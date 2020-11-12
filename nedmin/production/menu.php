@@ -37,14 +37,16 @@ $menusor->execute();
 
         </h2>
         <div class="clearfix">
-          <a href="menu-ekle.php"><button class="btn btn-info btn-xs"> Yeni Menü </button></a>
+          <div align="right">
+          <a href="menu-ekle.php"><button class="btn btn-info btn-xs"> Yeni Menü Ekle</button></a>
+          </div>
         </div>
       </div>
       <div class="x_content">
 
         <!-- Div içerik başlangıç -->
 
-        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" >
           <thead>
             <tr>
              <th>S.No</th>

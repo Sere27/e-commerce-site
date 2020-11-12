@@ -3,6 +3,7 @@ ob_start();
 session_start();
 
 include 'baglan.php';
+include '../production/fonksiyon.php';
 
 
 if(isset($_POST['admingiris'])){
@@ -22,11 +23,11 @@ if(isset($_POST['admingiris'])){
 	if ($say==1) {
 
 		$_SESSION['kullanici_mail']=$kullanici_mail;
-		header("Location:../production/index.php");
+		Header("Location:../production/index.php");
 
 
 	}else{
-		header("Location:../production/login.php?durum=no");
+		Header("Location:../production/login.php?durum=no");
 		exit;
 	}
 
@@ -52,10 +53,10 @@ if(isset($_POST['genelayarkaydet'])){
 
 	if($update){
 
-		header("Location:../production/genel-ayar.php?durum=ok");
+		Header("Location:../production/genel-ayar.php?durum=ok");
 
 	}else{
-		header("Location:../production/genel-ayar.php?durum=no");
+		Header("Location:../production/genel-ayar.php?durum=no");
 	}
 
 }
@@ -86,10 +87,10 @@ if(isset($_POST['iletisimayarkaydet'])){
 
 	if($update){
 
-		header("Location:../production/iletisim-ayarlar.php?durum=ok");
+		Header("Location:../production/iletisim-ayarlar.php?durum=ok");
 
 	}else{
-		header("Location:../production/iletisim-ayarlar.php?durum=no");
+		Header("Location:../production/iletisim-ayarlar.php?durum=no");
 	}
 
 }
@@ -110,10 +111,10 @@ if(isset($_POST['apiayarkaydet'])){
 
 	if($update){
 
-		header("Location:../production/api-ayar.php?durum=ok");
+		Header("Location:../production/api-ayar.php?durum=ok");
 
 	}else{
-		header("Location:../production/api-ayar.php?durum=no");
+		Header("Location:../production/api-ayar.php?durum=no");
 	}
 
 }
@@ -136,10 +137,10 @@ if(isset($_POST['sosyalmedyaayarkaydet'])){
 
 	if($update){
 
-		header("Location:../production/sosyalmedya-ayar.php?durum=ok");
+		Header("Location:../production/sosyalmedya-ayar.php?durum=ok");
 
 	}else{
-		header("Location:../production/sosyalmedya-ayar.php?durum=no");
+		Header("Location:../production/sosyalmedya-ayar.php?durum=no");
 	}
 
 }
@@ -162,10 +163,10 @@ if(isset($_POST['mailayarkaydet'])){
 
 	if($update){
 
-		header("Location:../production/mail-ayar.php?durum=ok");
+		Header("Location:../production/mail-ayar.php?durum=ok");
 
 	}else{
-		header("Location:../production/mail-ayar.php?durum=no");
+		Header("Location:../production/mail-ayar.php?durum=no");
 	}
 
 }
@@ -186,13 +187,12 @@ if(isset($_POST['hakkimizdakaydet'])){
 		'hakkimizda_misyon'=> $_POST['hakkimizda_misyon']
 	));
 	if($update){
-		header("Location:../production/hakkimizda.php?durum=ok");
+		Header("Location:../production/hakkimizda.php?durum=ok");
 
 	}else{
-		header("Location:../production/hakkimizda.php?durum=no");
+		Header("Location:../production/hakkimizda.php?durum=no");
 	}
 }
-
 
 
 if (isset($_POST['kullaniciduzenle'])) {
@@ -214,11 +214,11 @@ if (isset($_POST['kullaniciduzenle'])) {
 
 	if ($update) {
 
-		header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=ok");
+		Header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=ok");
 
 	} else {
 
-		header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=no");
+		Header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=no");
 	}
 
 }
@@ -242,4 +242,97 @@ if ($_GET['kullaniciSil']=="ok") {
 	}
 
 }
+
+
+if (isset($_POST['menuduzenle'])) {
+
+	$menu_id=$_POST['menu_id'];
+
+	$menu_seourl=seo($_POST['menu_ad']);
+
+	$ayarkaydet=$db->prepare("UPDATE menu SET
+		menu_ad=:menu_ad,
+		menu_detay=:menu_detay,
+		menu_url=:menu_url,
+		menu_sira=:menu_sira,
+		menu_seourl=:menu_seourl,
+		menu_durum=:menu_durum
+		WHERE menu_id={$_POST['menu_id']}");
+
+	$update=$ayarkaydet->execute(array(
+		'menu_ad' => $_POST['menu_ad'],
+		'menu_detay' => $_POST['menu_detay'],
+		'menu_url' => $_POST['menu_url'],
+		'menu_sira' => $_POST['menu_sira'],
+		'menu_seourl' => $menu_seourl,
+		'menu_durum' => $_POST['menu_durum']
+	));
+
+
+	if ($update) {
+
+		Header("Location:../production/menu-duzenle.php?menu_id=$menu_id&durum=ok");
+
+	} else {
+
+		Header("Location:../production/menu-duzenle.php?menu_id=$menu_id&durum=no");
+	}
+
+}
+
+if ($_GET['menuSil']=="ok") {
+
+	$sil=$db->prepare("DELETE from menu where menu_id=:id");
+	$kontrol=$sil->execute(array(
+		'id' => $_GET['menu_id']
+	));
+
+	
+	if ($kontrol) {
+
+		Header("Location:../production/menu.php?sil=ok");
+
+	} else {
+
+		Header("Location:../production/.php?sil=no");
+	}
+
+}
+
+
+if (isset($_POST['menukaydet'])) {
+
+
+	$menu_seourl=seo($_POST['menu_ad']);
+
+	$ayarkaydet=$db->prepare("INSERT INTO menu SET
+		menu_ad=:menu_ad,
+		menu_detay=:menu_detay,
+		menu_url=:menu_url,
+		menu_sira=:menu_sira,
+		menu_seourl=:menu_seourl,
+		menu_durum=:menu_durum");
+
+	$update=$ayarkaydet->execute(array(
+		'menu_ad' => $_POST['menu_ad'],
+		'menu_detay' => $_POST['menu_detay'],
+		'menu_url' => $_POST['menu_url'],
+		'menu_sira' => $_POST['menu_sira'],
+		'menu_seourl' => $menu_seourl,
+		'menu_durum' => $_POST['menu_durum']
+	));
+
+
+	if ($update) {
+
+		Header("Location:../production/menu.php?durum=ok");
+
+	} else {
+
+		Header("Location:../production/menu.php?durum=no");
+	}
+
+}
+
+
 ?>

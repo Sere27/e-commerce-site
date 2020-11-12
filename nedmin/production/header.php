@@ -2,6 +2,8 @@
 ob_start();
 session_start();
 include '../netting/baglan.php';
+include 'fonksiyon.php';
+
 
 
 $ayarSor=$db->prepare("SELECT * FROM ayar where ayar_id=:id");
