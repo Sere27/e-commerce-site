@@ -101,13 +101,6 @@ if($say==0){
 
                 <li><a href="index.php"><i class="fa fa-home"></i> Ana Sayfa</a></li>
 
-                <li><a href="kullanici.php"><i class="fa fa-user"></i>Kullanıcılar</a></li>
-
-                <li><a href="menu.php"><i class="fa fa-bars"></i>Menüler</a></li>
-
-                <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda</a></li>
-
-
                 <li><a><i class="fa fa-cogs"></i>Site Ayarlar <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="genel-ayar.php">Genel Ayarlar</a></li>
@@ -116,7 +109,14 @@ if($say==0){
                     <li><a href="sosyalmedya-ayar.php">Sosyal Medya Ayarlar</a></li>
                     <li><a href="mail-ayar.php">Mail Ayarları</a></li>
                   </ul>
-                </li>                     
+                </li>  
+
+                <li><a href="kullanici.php"><i class="fa fa-user"></i>Kullanıcılar</a></li>
+
+                <li><a href="menu.php"><i class="fa fa-bars"></i>Menüler</a></li>
+
+                <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda</a></li>
+                
               </ul>
             </div>
 
