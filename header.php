@@ -50,7 +50,7 @@ $ayarCek=$ayarSor->fetch(PDO::FETCH_ASSOC);
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-6 col-md-4 main-logo">
-						<a href="index.php"><img src="images\logo.png" alt="logo" class="logo img-responsive"></a>
+						<a href="index.php"><img style="border-radius: 50%" width="70px" src="<?php echo $ayarCek['ayar_logo'] ?>" alt="site-logo" class="logo img-responsive"></a>
 					</div>
 					<div class="col-md-8">
 						<div class="pushright">

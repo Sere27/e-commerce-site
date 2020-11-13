@@ -17,7 +17,7 @@ $menucek=$menusor->fetch(PDO::FETCH_ASSOC);
 		<div class="col-md-9"><!--Main content-->
 
 			<div class="title-bg">
-				<div class="title"><?php echo $menucek['menu_ad'] ?></div>
+				<div class="title"><?php echo $menucek['menu_ad'] ?> </div>
 			</div>
 
 			<div class="page-content">

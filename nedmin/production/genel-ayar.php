@@ -62,6 +62,8 @@
             </div>
           </div> 
 
+          <input type="hidden" name="eski_yol" value="<?php echo $ayarCek['ayar_logo'] ?>">
+
 
           <div align="right" class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
             <button type="submit" name="logoduzenle" class="btn btn-primary">Güncelle</button>            
