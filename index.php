@@ -9,45 +9,6 @@
 		<!-- Slider -->
 		<?php include 'slider.php'; ?>
 
-		<div class="bar"></div>
-		<div id="sync2" class="owl-carousel">
-			<div class="item">
-				<div class="slide-type-1-sync">
-					<h3>Stylish Jacket</h3>
-					<p>Description here here here</p>
-				</div>
-			</div>
-			<div class="item">
-				<div class="slide-type-1-sync">
-					<h3>Stylish Jacket</h3>
-					<p>Description here here here</p>
-				</div>
-			</div>
-			<div class="item">
-				<div class="slide-type-1-sync">
-					<h3>Nike Airmax</h3>
-					<p>Description here here here</p>
-				</div>
-			</div>
-			<div class="item">
-				<div class="slide-type-1-sync">
-					<h3>Unique smaragd ring</h3>
-					<p>Description here here here</p>
-				</div>
-			</div>
-			<div class="item">
-				<div class="slide-type-1-sync">
-					<h3>Stylish Jacket</h3>
-					<p>Description here here here</p>
-				</div>
-			</div>
-			<div class="item">
-				<div class="slide-type-1-sync">
-					<h3>Nike Airmax</h3>
-					<p>Description here here here</p>
-				</div>
-			</div>
-		</div>
 	</div>
 	<div class="f-widget featpro">
 		<div class="container">
