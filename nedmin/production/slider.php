@@ -71,10 +71,9 @@ $slidersor->execute();
             <tr>
               <td><?php echo $say ?></td>
               <td><img width="150" src="../../<?php  echo $slidercek['slider_resimyol'] ?>" alt=""></td>
-              <td><?php echo $slidercek['slider_ad'] ?></td>
+              <td><?php echo $slidercek['slider_isim'] ?></td>
               <td><?php echo $slidercek['slider_link'] ?></td>     
               <td><?php echo $slidercek['slider_sira'] ?></td>
-
 
               <td>
 

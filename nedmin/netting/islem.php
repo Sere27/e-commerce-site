@@ -25,13 +25,13 @@ if(isset($_POST['sliderkaydet'])){
 
 
 	$kaydet=$db->prepare("INSERT INTO slider SET
-		slider_ad=:slider_ad,
+		slider_isim=:slider_isim,
 		slider_sira=:slider_sira,
 		slider_link=:slider_link,
 		slider_resimyol=:slider_resimyol
 		");
 	$insert=$kaydet->execute(array(
-		'slider_ad' => $_POST['slider_ad'],
+		'slider_isim' => $_POST['slider_isim'],
 		'slider_sira' => $_POST['slider_sira'],
 		'slider_link' => $_POST['slider_link'],
 		'slider_resimyol' => $refimgyol
@@ -49,6 +49,60 @@ if(isset($_POST['sliderkaydet'])){
 
 }
 
+if (isset($_POST['sliderduzenle'])) {
+
+	$slider_id=$_POST['slider_id'];
+
+	$ayarkaydet=$db->prepare("UPDATE slider SET
+		slider_isim=:slider_isim,
+		slider_link=:slider_link,
+		slider_sira=:slider_sira,
+		slider_durum=:slider_durum
+		WHERE slider_id={$_POST['slider_id']}");
+
+	$update=$ayarkaydet->execute(array(
+		'slider_isim' => $_POST['slider_isim'],
+		'slider_link' => $_POST['slider_link'],
+		'slider_sira' => $_POST['slider_sira'],
+		'slider_durum' => $_POST['slider_durum']
+	));
+
+
+	if ($update) {
+
+		Header("Location:../production/slider-duzenle.php?slider_id=$slider_id&durum=ok");
+
+	} else {
+
+		Header("Location:../production/slider-duzenle.php?slider_id=$slider_id&durum=no");
+	}
+
+}
+
+if (isset($_POST['slideriptal'])) {
+
+	Header("Location:../production/slider.php");
+
+}
+
+if ($_GET['sliderSil']=="ok") {
+
+	$sil=$db->prepare("DELETE from slider where slider_id=:id");
+	$kontrol=$sil->execute(array(
+		'id' => $_GET['slider_id']
+	));
+
+	
+	if ($kontrol) {
+
+		Header("Location:../production/slider.php?sil=ok");
+
+	} else {
+
+		Header("Location:../production/slider.php?sil=no");
+	}
+
+}
 
 if(isset($_POST['logoduzenle'])){
 
@@ -64,7 +118,6 @@ if(isset($_POST['logoduzenle'])){
 
 
 	@move_uploaded_file($tmp_name, "$uploads_dir/$benzersizsayi$name");
-
 
 	$duzenle=$db->prepare("UPDATE ayar SET
 		ayar_logo=:logo
