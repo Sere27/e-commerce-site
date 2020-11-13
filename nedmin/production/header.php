@@ -115,6 +115,8 @@ if($say==0){
 
                 <li><a href="menu.php"><i class="fa fa-bars"></i>Menüler</a></li>
 
+                <li><a href="slider.php"><i class="fa fa-image"></i>Slider</a></li>
+
                 <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda</a></li>
                 
               </ul>
