@@ -91,7 +91,7 @@ $menusor->execute();
 
               <td><center><a href="menu-duzenle.php?menu_id=<?php echo $menucek['menu_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
 
-              <td><center><a href="../netting/islem.php?menu_id=<?php echo $menucek['menu_id'] ?> & menuSil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
+              <td><center><a href="../netting/islem.php?menu_id=<?php echo $menucek['menu_id'] ?> & menusil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
             </tr>
 
           <?php  }

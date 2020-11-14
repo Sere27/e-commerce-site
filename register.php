@@ -1,72 +1,99 @@
 <?php include 'header.php'; ?>
 
 <div class="container">
-	<ul class="small-menu"><!--small-nav -->
-		<li><a href="" class="myacc">My Account</a></li>
-		<li><a href="" class="myshop">Shopping Chart</a></li>
-		<li><a href="" class="mycheck">Checkout</a></li>
-	</ul><!--small-nav -->
-	<div class="clearfix"></div>
-	<div class="lines"></div>
-</div>
-
-<div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-title-wrap">
 				<div class="page-title-inner">
 					<div class="row">
-						<div class="col-md-4">
-							<div class="bigtitle">Kullanıcı Kayıt</div>
-							<div class="bread">Kayıt işlemini aşağıda ki form ile gerçekleştirebilirsiniz.</div>
-							
+						<div class="col-md-12">
+							<div class="bigtitle">Kullanıcı Kaydı</div>
+							<p >Kullanıcı kayıt işlemlerini aşağıda ki form aracılığı ile gerçekleştirebilirsiniz.</p>
 						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<form class="form-horizontal checkout" role="form">
+	<form action="nedmin/netting/islem.php" method="POST" class="form-horizontal checkout" role="form">
 		<div class="row">
 			<div class="col-md-6">
 				<div class="title-bg">
-					<div class="title">Personal Details</div>
+					<div class="title">Kayıt Bilgileri</div>
 				</div>
+
+				<?php 
+
+				if ($_GET['durum']=="farklisifre") {?>
+
+				<div class="alert alert-danger">
+					<strong>Hata!</strong> Girdiğiniz şifreler eşleşmiyor.
+				</div>
+					
+				<?php } elseif ($_GET['durum']=="eksiksifre") {?>
+
+				<div class="alert alert-danger">
+					<strong>Hata!</strong> Şifreniz minimum 6 karakter uzunluğunda olmalıdır.
+				</div>
+					
+				<?php } elseif ($_GET['durum']=="mukerrerkayit") {?>
+
+				<div class="alert alert-danger">
+					<strong>Hata!</strong> Bu kullanıcı daha önce kayıt edilmiş.
+				</div>
+					
+				<?php } elseif ($_GET['durum']=="basarisiz") {?>
+
+				<div class="alert alert-danger">
+					<strong>Hata!</strong> Kayıt Yapılamadı Sistem Yöneticisine Danışınız.
+				</div>
+					
+				<?php }
+				 ?>
+
+
+				
+
+
 				<div class="form-group dob">
 					<div class="col-sm-12">
-						<input type="text" class="form-control" id="name" placeholder="Adınız Soyadınız...">
+						
+						<input type="text" class="form-control"  required="" name="kullanici_adsoyad" placeholder="Ad ve Soyadınızı Giriniz...">
 					</div>
+					
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12">
-						<input type="text" class="form-control" id="email" placeholder="Mail Adresiniz...">
+						<input type="email" class="form-control" required="" name="kullanici_mail"  placeholder="Dikkat! Mail adresiniz kullanıcı adınız olacaktır.">
 					</div>
 				</div>
 				<div class="form-group dob">
 					<div class="col-sm-6">
-						<input type="password" class="form-control" id="phone" placeholder="Şifreniz...">
+						<input type="password" class="form-control" name="kullanici_passwordone"    placeholder="Şifrenizi Giriniz...">
 					</div>
-					
 					<div class="col-sm-6">
 						<input type="password" class="form-control" name="kullanici_passwordtwo"   placeholder="Şifrenizi Tekrar Giriniz...">
 					</div>
 				</div>
 
 
-				<button class="btn btn-default btn-red">Kayıt Ol</button>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-			</div>
 
+				<button type="submit" name="kullanicikaydet" class="btn btn-default btn-red">Kayıt İşlemini Yap</button>
+			</div>
+			<div class="col-md-6">
+				<div class="title-bg">
+					<div class="title">Şifrenizi mi Unuttunuz?</div>
+				</div>
+
+
+				<center><img width="400" src="http://www.emrahyuksel.com.tr/dimg/sifremi-unuttum.jpg"></center>
+			</div>
 		</div>
-	</form>
+	</div>
+</form>
+<div class="spacer"></div>
 </div>
 
-
-
-
-<?php include 'footer.php' ?>
+<?php include 'footer.php'; ?>
