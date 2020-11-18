@@ -27,7 +27,7 @@ if (isset($_POST['kullanicikaydet'])) {
 			$kullanicisor=$db->prepare("select * from kullanici where kullanici_mail=:mail");
 			$kullanicisor->execute(array(
 				'mail' => $kullanici_mail
-				));
+			));
 
 			//dönen satır sayısını belirtir
 			$say=$kullanicisor->rowCount();
@@ -53,15 +53,13 @@ if (isset($_POST['kullanicikaydet'])) {
 					'kullanici_mail' => $kullanici_mail,
 					'kullanici_password' => $password,
 					'kullanici_yetki' => $kullanici_yetki
-					));
+				));
 
 				if ($insert) {
 
 
 					header("Location:../../index.php?durum=loginbasarili");
 
-
-				//Header("Location:../production/genel-ayarlar.php?durum=ok");
 
 				} else {
 
@@ -94,8 +92,6 @@ if (isset($_POST['kullanicikaydet'])) {
 	}
 	
 }
-
-
 
 
 if(isset($_POST['sliderkaydet'])){
@@ -417,6 +413,49 @@ if(isset($_POST['hakkimizdakaydet'])){
 		Header("Location:../production/hakkimizda.php?durum=no");
 	}
 }
+
+
+
+if(isset($_POST['kullanicigiris'])){
+
+	echo $kullanici_mail=htmlspecialchars($_POST['kullanici_mail']); 
+	echo $kullanici_password=md5($_POST['kullanici_password']); 
+
+
+	$kullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail and kullanici_yetki=:yetki and kullanici_password=:password and kullanici_durum=:durum");
+	$kullanicisor->execute(array(
+		'mail' => $kullanici_mail,
+		'yetki' => 1,
+		'password' => $kullanici_password,
+		'durum' => 1
+	));
+
+
+	$say=$kullanicisor->rowCount();
+
+
+
+	if ($say==1) {
+
+		echo $_SESSION['userkullanici_mail']=$kullanici_mail;
+
+		header("Location:../../");
+		exit;
+		
+
+
+
+
+	} else {
+
+
+		header("Location:../../?durum=basarisizgiris");
+
+	}
+
+
+}
+
 
 
 if (isset($_POST['kullaniciduzenle'])) {
