@@ -58,7 +58,7 @@ if (isset($_POST['kullanicikaydet'])) {
 				if ($insert) {
 
 
-					header("Location:../../index.php?durum=loginbasarili");
+					header("Location:../../index.php?durum=kayitbasarili");
 
 
 				} else {
@@ -416,7 +416,7 @@ if(isset($_POST['hakkimizdakaydet'])){
 
 
 
-if(isset($_POST['kullanicigiris'])){
+if (isset($_POST['kullanicigiris'])) {
 
 	echo $kullanici_mail=htmlspecialchars($_POST['kullanici_mail']); 
 	echo $kullanici_password=md5($_POST['kullanici_password']); 
@@ -432,8 +432,8 @@ if(isset($_POST['kullanicigiris'])){
 
 
 	$say=$kullanicisor->rowCount();
-
-
+echo $say;
+exit;
 
 	if ($say==1) {
 

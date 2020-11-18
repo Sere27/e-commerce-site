@@ -1,4 +1,6 @@
 <?php 
+ob_start();
+session_start();
 include 'nedmin/netting/baglan.php';
 include 'nedmin/production/fonksiyon.php';
 
@@ -8,6 +10,13 @@ $ayarSor->execute(array(
 	'id' => 0
 ));
 $ayarCek=$ayarSor->fetch(PDO::FETCH_ASSOC);
+
+// $kullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail");
+// $kullanicisor->execute(array(
+// 	'mail' => $_SESSION['userkullanici_mail']
+// ));
+// $say=$kullanicisor->rowCount();
+// $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -55,16 +64,25 @@ $ayarCek=$ayarSor->fetch(PDO::FETCH_ASSOC);
 					<div class="col-md-8">
 						<div class="pushright">
 							<div class="top">
-								<a href="#" id="reg" class="btn btn-default btn-dark">Giriş<span>-- Or --</span>Kayıt</a>
+								<?php 
+
+								if (!isset($_SESSION['userkullanici_mail'])) {?>
+
+									<a href="#" id="reg" class="btn btn-default btn-dark">Giriş Yap<span>-- yada --</span>Kayıt Ol</a>
+
+								<?php } else { ?>
+
+									<a href="#"  class="btn btn-default btn-dark">Hoşgeldin<span>--</span><?php echo $kullanicicek['kullanici_adsoyad'] ?></a>
+
+								<?php } ?>
+
+
 								<div class="regwrap">
 									<div class="row">
 										<div class="col-md-6 regform">
 											<div class="title-widget-bg">
-												<div class="title-widget">Kullanıcı Girişi</div>
+												<div class="title-widget">Kullanıcı Giriş</div>
 											</div>
-
-
-											
 
 											<form action="nedmin/netting/islem.php" method="POST" role="form">
 
@@ -221,11 +239,20 @@ $ayarCek=$ayarSor->fetch(PDO::FETCH_ASSOC);
 								</div>
 							</div>
 
-							<!--<ul class="small-menu">
-								<li><a href="" class="myacc">My Account</a></li>
-								<li><a href="" class="myshop">Shopping Chart</a></li>
-								<li><a href="" class="mycheck">Checkout</a></li>
-							</ul> -->
+
+							<?php 
+
+							if (isset($_SESSION['userkullanici_mail'])) {?>
+
+								<ul class="small-menu">
+									<li><a href="hesabim" class="myacc">Hesap Bilgilerim</a></li>
+									<li><a href="siparislerim" class="myshop">Siparişlerim</a></li>
+									<li><a href="logout" class="mycheck">Güvenli Çıkış</a></li>
+								</ul>
+
+							<?php }
+
+							?>
 
 						</div>
 					</div>
