@@ -11,12 +11,13 @@ $ayarSor->execute(array(
 ));
 $ayarCek=$ayarSor->fetch(PDO::FETCH_ASSOC);
 
-// $kullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail");
-// $kullanicisor->execute(array(
-// 	'mail' => $_SESSION['userkullanici_mail']
-// ));
-// $say=$kullanicisor->rowCount();
-// $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
+$kullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail");
+if(isset($_SESSION['userkullanici_mail'])){
+$kullanicisor->execute(array(
+	'mail' => $_SESSION['userkullanici_mail']
+));};
+$say=$kullanicisor->rowCount();
+$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 
 ?>
 

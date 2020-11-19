@@ -418,8 +418,8 @@ if(isset($_POST['hakkimizdakaydet'])){
 
 if (isset($_POST['kullanicigiris'])) {
 
-	echo $kullanici_mail=htmlspecialchars($_POST['kullanici_mail']); 
-	echo $kullanici_password=md5($_POST['kullanici_password']); 
+	$kullanici_mail=htmlspecialchars($_POST['kullanici_mail']); 
+	$kullanici_password=md5($_POST['kullanici_password']); 
 
 
 	$kullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail and kullanici_yetki=:yetki and kullanici_password=:password and kullanici_durum=:durum");
@@ -432,9 +432,7 @@ if (isset($_POST['kullanicigiris'])) {
 
 
 	$say=$kullanicisor->rowCount();
-echo $say;
-exit;
-
+	
 	if ($say==1) {
 
 		echo $_SESSION['userkullanici_mail']=$kullanici_mail;
