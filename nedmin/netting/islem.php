@@ -6,22 +6,18 @@ include 'baglan.php';
 include '../production/fonksiyon.php';
 
 
+
 if (isset($_POST['kullanicikaydet'])) {
-
 	
-	echo $kullanici_adsoyad=htmlspecialchars($_POST['kullanici_adsoyad']); echo "<br>";
-	echo $kullanici_mail=htmlspecialchars($_POST['kullanici_mail']); echo "<br>";
-
-	echo $kullanici_passwordone=$_POST['kullanici_passwordone']; echo "<br>";
-	echo $kullanici_passwordtwo=$_POST['kullanici_passwordtwo']; echo "<br>";
-
+	$kullanici_adsoyad=htmlspecialchars($_POST['kullanici_adsoyad']);
+	$kullanici_mail=htmlspecialchars($_POST['kullanici_mail']);
+	$kullanici_passwordone=$_POST['kullanici_passwordone']; 
+	$kullanici_passwordtwo=$_POST['kullanici_passwordtwo'];
 
 	if ($kullanici_passwordone==$kullanici_passwordtwo) {
 
-
-		if ($kullanici_passwordone>=6) {
-
-
+		if (strlen($kullanici_passwordone)>5) {
+			
 // Başlangıç
 
 			$kullanicisor=$db->prepare("select * from kullanici where kullanici_mail=:mail");
@@ -31,8 +27,6 @@ if (isset($_POST['kullanicikaydet'])) {
 
 			//dönen satır sayısını belirtir
 			$say=$kullanicisor->rowCount();
-
-
 
 			if ($say==0) {
 
@@ -57,14 +51,12 @@ if (isset($_POST['kullanicikaydet'])) {
 
 				if ($insert) {
 
-
-					header("Location:../../index.php?durum=kayitbasarili");
-
+					header("Location:../../index.php?durum=loginbasarili");
 
 				} else {
 
-
 					header("Location:../../register.php?durum=basarisiz");
+
 				}
 
 			} else {
@@ -72,26 +64,21 @@ if (isset($_POST['kullanicikaydet'])) {
 				header("Location:../../register.php?durum=mukerrerkayit");
 
 			}
-
 		// Bitiş
 
 		} else {
 
-
 			header("Location:../../register.php?durum=eksiksifre");
-
 
 		}
 
-
 	} else {
 
-
-
 		header("Location:../../register.php?durum=farklisifre");
+
 	}
-	
 }
+
 
 
 if(isset($_POST['sliderkaydet'])){
@@ -432,7 +419,7 @@ if (isset($_POST['kullanicigiris'])) {
 
 
 	$say=$kullanicisor->rowCount();
-	
+
 	if ($say==1) {
 
 		echo $_SESSION['userkullanici_mail']=$kullanici_mail;
